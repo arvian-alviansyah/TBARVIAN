@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+        }
+        .card {
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 16px;
+            width: 200px;
+            text-align: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .card img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 4px;
+        }
+        .card-body h2 {
+            margin: 10px 0;
+        }
+        .card-body h3 {
+            color: red;
+            margin: 10px 0;
+        }
+        .btn-primary {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .btn-primary:hover {
+            background-color: #0056b3;
+        }
+        #saldo {
+            text-align: center;
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    
+     
+    
+    <div id="saldo">Saldo: </div>
+  <div class="container">
+    <div id="card-list"></div>
+  </div>  
+  <script>
+    function formatRupiah(amount) {
+      return new Intl.NumberFormat("id-ID", {
+        style: "currency",
+        currency: "IDR",
+        minimumFractionDigits: 0,
+      }).format(amount);
+    }
+    let saldo = 1000000;
+    document.getElementById("saldo").textContent = `Saldo: ${formatRupiah(saldo)}`;
+    const products = [
+      {
+        img: "iuhertui",
+        name: "burger",
+        price: 25000,
+      },
+      {
+        img: "iuhertui",
+        name: "pizza",
+        price: 25000,
+      },
+      {
+        img: "iuhertui",
+        name: "coca cola",
+        price: 25000,
+      },
+      {
+        img: "iuhertui",
+        name: "kentang",
+        price: 25000,
+      },
+    ]
+    
+    document.getElementById('card-list').innerHTML = products
+    .map((product, index) => {
+       return `
+        <div class="card">
+            <img src="${product.img}" />
+            <div class="card-body">
+            <h2>${product.name}</h2>
+            <h3 style="color: red">${formatRupiah(product.price)}</h3>
+            <button class="btn-primary beli" data-index=${index}>beli</button>
+            </div>
+           </div>
+           
+           `;
+            }).join("");
+
+            const beli = document.querySelectorAll(".btn-primary");
+            
+            beli.forEach((button) => {
+              button.addEventListener("click", () => {
+
+                const index = button.getAttribute("data-index");
+                const harga = products[index].price;
+
+                if (saldo >= harga) {
+
+                  saldo -= harga;
+
+                  document.getElementById("saldo").textContent =
+                   `Saldo: ${formatRupiah(saldo)}`;
+
+                   alert(
+                      `anda membeli ${products[index].name}
+                      seharga ${formatRupiah(harga)}
+                 sisa saldo: ${formatRupiah(saldo)}`
+                    );
+                     
+                } else {
+                   alert("saldo tidak cukup.");
+                  }
+                });
+              });
+      </script>
+</body>
+</html>

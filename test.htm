@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body id = "body">
+<button onclick="coba()">white</button>
+<button onclick="coba1()">black</button>
+<button onclick="coba2()">pink</button>
+<p onmouseenter="coba1()" onmouseleave="coba()">click</p>
+<p onmouseenter="coba2()" onmouseleave="coba()">click</p>
+<script>
+    body = document.getElementById("body")
+     coba = () => {
+        body.style.backgroundColor = "white"
+     }
+     coba1 = () => {
+        body.style.backgroundColor = "black"
+     }
+     coba2 = () => {
+        body.style.backgroundColor = "pink"
+     }
+</script>
+</body>
+</html>

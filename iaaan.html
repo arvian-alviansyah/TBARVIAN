@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=>, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+  <div class="container">
+    <div id="card-list"></div>
+  </div>  
+  <script>
+    let saldo = 1000000;
+    const products = [
+      {
+        img: "iuhertui",
+        name: "burger",
+        price: 25000,
+      },
+      {
+        img: "iuhertui",
+        name: "pizza",
+        price: 25000,
+      },
+      {
+        img: "iuhertui",
+        name: "coca cola",
+        price: 25000,
+      },
+      {
+        img: "iuhertui",
+        name: "kentang",
+        price: 25000,
+      },
+    ]
+    function formatRupiah(amount) {
+      return new Intl.Numberformat("id.ID" , {
+        style:"currency" ,
+        currency:"IDR" ,
+       minimumfractiondigits: 0,
+       minimumfractiondigits: 0,
+ }) .format(amount);
+  }
+    card.innerHTML = Product
+    .map((product, index) => {
+       return `
+        <div class="card">
+            <img src="${product.img}" />
+            <div class="card-body">
+            <h2>${product.name}</h2>
+            <p>${product.desc}</p>
+            <h3 style="color: red">${formatRupiah(product.price)}</h3>
+            <button class="btn-primary beli" data-index=${index}>beli</button>
+            </div>
+           </div>
+           
+           `;
+            }).joind("");
+
+            const beli=document.querySelectorAll(".btn-primary");
+            
+            beli.forEach((button) => {
+              button.addEventListener("click"), () => {
+
+                const index = button.getAttribute("data-index");
+                const harga = produk[index].harga;
+
+                if (saldo >= harga) {
+
+                  saldo -= harga;
+
+                  document.getElementById("saldo").textContent =
+                   `saldo: ${formatRupiah(saldo)} ;
+
+                   alert(
+                      `anda membeli ${produk[index].nama}
+                      seharga ${formatRupiah(harga)}
+                 sisa saldo: ${formatRupiah(saldo)}`
+                    );
+                     
+                } else {
+                   alert("saldo tidak cukup.");
+                  }
+                });
+              });
+      </script>
+</body>
+</html>
